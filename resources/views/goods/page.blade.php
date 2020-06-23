@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>main - ГеймсМаркет</title>
+    <title>1product - ГеймсМаркет</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
     <link href="{{ URL::asset('css/libs.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ URL::asset('css/main.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ URL::asset('css/media.css') }}" rel="stylesheet" type="text/css">
@@ -31,19 +32,7 @@
                     <div class="payment-basket__status__basket"><span class="payment-basket__status__basket-value">0</span><span class="payment-basket__status__basket-value-descr">товаров</span></div>
                 </div>
             </div>
-            @if (Route::has('login'))
-                <div class="authorization-block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="authorization-block__link">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="authorization-block__link">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="authorization-block__link">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+            <div class="authorization-block"><a href="#" class="authorization-block__link">Регистрация</a><a href="#" class="authorization-block__link">Войти</a></div>
         </div>
     </header>
     <div class="middle">
@@ -83,12 +72,12 @@
         <div class="main-content">
             <div class="content-top">
                 <div class="content-top__text">Купить игры неборого без регистрации смс с торента, получить компкт диск, скачать Steam игры после оплаты</div>
-                <div class="slider"><img src="img/slider.png" alt="Image" class="image-main"></div>
+                <div class="image-container"><img src="img/slider.png" alt="Image" class="image-main"></div>
             </div>
             <div class="content-middle">
                 <div class="content-head__container">
                     <div class="content-head__title-wrap">
-                        <div class="content-head__title-wrap__title bcg-title">Последние товары</div>
+                        <div class="content-head__title-wrap__title bcg-title">{{ $attributes->name }}</div>
                     </div>
                     <div class="content-head__search-block">
                         <div class="search-container">
@@ -97,6 +86,39 @@
                                 <button class="search-container__form__btn">search</button>
                             </form>
                         </div>
+                    </div>
+                </div>
+                <div class="content-main__container">
+                    <div class="product-container">
+                        <div class="product-container__image-wrap"><img src="img/cover/game-1.jpg" class="image-wrap__image-product"></div>
+                        <div class="product-container__content-text">
+                            <div class="product-container__content-text__title">{{ $attributes->name }}</div>
+                            <div class="product-container__content-text__price">
+                                <div class="product-container__content-text__price__value">
+                                    Цена: <b>{{ $attributes->price }}</b>
+                                    руб
+                                </div><a href="#" class="btn btn-blue">Купить</a>
+                            </div>
+                            <div class="product-container__content-text__description">
+                                <p>
+                                    {{ $attributes->desc }}
+                                </p>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-bottom">
+                <div class="line"></div>
+                <div class="content-head__container">
+                    <div class="content-head__title-wrap">
+                        <div class="content-head__title-wrap__title bcg-title">Посмотрите наши товары</div>
                     </div>
                 </div>
                 <div class="content-main__container">
@@ -116,36 +138,9 @@
                             <div class="products-columns__item__thumbnail"><a href="#" class="products-columns__item__thumbnail__link"><img src="img/cover/game-3.jpg" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
                             <div class="products-columns__item__description"><span class="products-price">400 руб</span><a href="#" class="btn btn-blue">Купить</a></div>
                         </div>
-                        <div class="products-columns__item">
-                            <div class="products-columns__item__title-product"><a href="#" class="products-columns__item__title-product__link">World of WarCraft</a></div>
-                            <div class="products-columns__item__thumbnail"><a href="#" class="products-columns__item__thumbnail__link"><img src="img/cover/game-4.jpg" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
-                            <div class="products-columns__item__description"><span class="products-price">400 руб</span><a href="#" class="btn btn-blue">Купить</a></div>
-                        </div>
-                        <div class="products-columns__item">
-                            <div class="products-columns__item__title-product"><a href="#" class="products-columns__item__title-product__link">Call of Duty: Black ops II</a></div>
-                            <div class="products-columns__item__thumbnail"><a href="#" class="products-columns__item__thumbnail__link"><img src="img/cover/game-5.jpg" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
-                            <div class="products-columns__item__description"><span class="products-price">400 руб</span><a href="#" class="btn btn-blue">Купить</a></div>
-                        </div>
-                        <div class="products-columns__item">
-                            <div class="products-columns__item__title-product"><a href="#" class="products-columns__item__title-product__link">Batman</a></div>
-                            <div class="products-columns__item__thumbnail"><a href="#" class="products-columns__item__thumbnail__link"><img src="img/cover/game-6.jpg" alt="Preview-image" class="products-columns__item__thumbnail__img"></a></div>
-                            <div class="products-columns__item__description"><span class="products-price">400 руб</span><a href="#" class="btn btn-blue">Купить</a></div>
-                        </div>
                     </div>
                 </div>
-                <div class="content-footer__container">
-                    <ul class="page-nav">
-                        <li class="page-nav__item"><a href="#" class="page-nav__item__link"><i class="fa fa-angle-double-left"></i></a></li>
-                        <li class="page-nav__item"><a href="#" class="page-nav__item__link">1</a></li>
-                        <li class="page-nav__item"><a href="#" class="page-nav__item__link">2</a></li>
-                        <li class="page-nav__item"><a href="#" class="page-nav__item__link">3</a></li>
-                        <li class="page-nav__item"><a href="#" class="page-nav__item__link">4</a></li>
-                        <li class="page-nav__item"><a href="#" class="page-nav__item__link">5</a></li>
-                        <li class="page-nav__item"><a href="#" class="page-nav__item__link"><i class="fa fa-angle-double-right"></i></a></li>
-                    </ul>
-                </div>
             </div>
-            <div class="content-bottom"></div>
         </div>
     </div>
     <footer class="footer">
@@ -185,8 +180,6 @@
         </div>
     </footer>
 </div>
-<script src="{{ asset('js/main.js') }}"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
-
-

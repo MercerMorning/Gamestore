@@ -17,8 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('welcome');
+});
+
+Route::get('/goods', 'GoodsController@index');
+Route::get('/goods/goodpage/{id}', 'GoodsController@goodpage')->name('goods.goodpage');
+
 Auth::routes();
 
+/*
 Route::group(['prefix' => 'books', 'middleware' => 'auth'], function(){
     Route::get('/', 'BookController@index')->name('books');
     Route::get('create', 'BookController@create')->name('books.create');
@@ -26,7 +34,7 @@ Route::group(['prefix' => 'books', 'middleware' => 'auth'], function(){
     Route::post('add', 'BookController@add')->name('books.add');
     Route::post('save/{id}', 'BookController@save')->name('books.save');
     Route::get('delete/{id}', 'BookController@delete')->name('books.delete');
-});
+});*/
 
 //Auth::routes();
 //Route::get('/home', 'HomeController@index');

@@ -13,16 +13,16 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'GoodsController@index');
 
-Route::get('/home', function () {
-    return view('welcome');
-});
+//Route::get('/home', function () {
+//    return view('welcome');
+//});
 
 Route::get('/goods', 'GoodsController@index');
 Route::get('/goods/goodpage/{id}', 'GoodsController@goodpage')->name('goods.goodpage');
+Route::get('/goods/categories/{id}', 'GoodsController@categories')->name('goods.categories');
+Route::get('/goods/order/{id}', 'GoodsController@order')->name('goods.order');
 
 Auth::routes();
 

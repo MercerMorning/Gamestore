@@ -13,26 +13,35 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'GoodsController@index');
+Route::post('/image/upload', 'ImageController@upload')->name('image.upload');
+
+Route::get('/', 'GoodsController@index')->name('home');
 
 //Route::get('/home', function () {
 //    return view('welcome');
 //});
 
-Route::get('/goods', 'GoodsController@index');
+Route::get('/goods', 'GoodsController@index')->name('goods');
 Route::get('/goods/goodpage/{id}', 'GoodsController@goodpage')->name('goods.goodpage');
 Route::get('/goods/categories/{id}', 'GoodsController@categories')->name('goods.categories');
 Route::get('/goods/order/{id}', 'GoodsController@order')->name('goods.order');
 
 Auth::routes();
 
-Route::group(['prefix' => 'goods', 'middleware' => 'auth'], function() {
-    Route::get('/adminpage', 'AdminController@index')->name('goods.admin');;
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+//    Route::get('/', 'AdminController@act');
+    Route::get('/', 'AdminController@index')->name('goods.admin');
     Route::get('create', 'AdminController@create')->name('goods.create');
     Route::post('add', 'AdminController@add')->name('goods.add');
     Route::get('edit/{good}', 'AdminController@edit')->name('goods.edit');
     Route::post('save/{id}', 'AdminController@save')->name('goods.save');
     Route::get('delete/{id}', 'AdminController@delete')->name('goods.delete');
+//
+//    Route::get('create', 'AdminController@create')->name('.create');
+//    Route::post('add', 'AdminController@add')->name('goods.add');
+//    Route::get('edit/{good}', 'AdminController@edit')->name('goods.edit');
+//    Route::post('save/{id}', 'AdminController@save')->name('goods.save');
+//    Route::get('delete/{id}', 'AdminController@delete')->name('goods.delete');
 });
 
 

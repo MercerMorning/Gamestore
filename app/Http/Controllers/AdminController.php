@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    function act()
+    {
+        echo 'hi';
+    }
+
     function index()
     {
         $goods = Goods::all();
@@ -35,7 +40,8 @@ class AdminController extends Controller
         $goods->price = $request->price;
         $goods->category = $request->category;
         $goods->descr = $request->descr;
-        $goods->photo = $request->photo;
+        //$goods->photo = $request->photo;
+        $goods->photo = $request->file('photo')->store('uploads', 'public');
         $goods->save();
         return redirect()->route('goods.admin');
     }

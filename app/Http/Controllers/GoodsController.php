@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Categories;
 use App\Goods;
 use App\Mail\BookEdit;
+use App\Orders;
 use Illuminate\Http\Request;
 
 class GoodsController extends Controller
@@ -34,6 +35,10 @@ class GoodsController extends Controller
 
     function order($id)
     {
+        $orders = new Orders();
+        $orders->user_email = \Auth::user()->email;
+        $orders->good_id = $id;
+        $orders->save();
         \Mail::to(\Auth::user())->send(new BookEdit(['goodId'=>$id, 'email' => \Auth::user()->email]));
         return 'success!';
     }

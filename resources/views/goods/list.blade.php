@@ -25,7 +25,7 @@
                         @foreach($goods as $good)
                         <div class="products-category__list__item">
                             <div class="products-category__list__item__title-product"><a href="{{ route('goods.goodpage', ['id' => $good->id])}}">{{ $good->name }}</a></div>
-                            <div class="products-category__list__item__thumbnail"><a href="#" class="products-category__list__item__thumbnail__link"><img src="{{ URL::asset('img/cover/game-' . $good->id .'.jpg') }}" alt="Preview-image"></a></div>
+                            <div class="products-category__list__item__thumbnail"><a href="#" class="products-category__list__item__thumbnail__link"><img src="{{ URL::asset('storage/' . $good->photo) }}" alt="Preview-image"></a></div>
                             <div class="products-category__list__item__description"><span class="products-price">{{ $good->price }}</span>
                                 <a href="{{ route('goods.order', ['id' => $good->id])}}" class="btn btn-blue">Купить</a>
                             </div>

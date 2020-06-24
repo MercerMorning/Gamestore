@@ -24,9 +24,7 @@
                 <div class="content-main__container">
                     <div class="product-container">
                         <div class="product-container__image-wrap">
-                            <img src="{{ URL::asset('img/cover/game-' . $attributes->id .'.jpg') }}" class="image-wrap__image-product">
-
-
+                            <img src="{{ URL::asset('storage/' . $attributes->photo) }}" class="image-wrap__image-product">
                         </div>
                         <div class="product-container__content-text">
                             <div class="product-container__content-text__title">{{ $attributes->name }}</div>

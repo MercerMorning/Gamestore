@@ -6,7 +6,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Add book</div>
-                    <form action="{{route('goods.add')}}" method="post">
+                    <form enctype="multipart/form-data" action="{{route('goods.add')}}" method="post">
                         {{ csrf_field() }}
                         <table class="table table-bordered">
                             <tr>
@@ -48,7 +48,7 @@
                             <tr>
                                 <td>photo</td>
                                 <td>
-                                    <input type="text" name="photo">
+                                    <input type="file" name="photo">
                                     @if ($errors->has('photo'))
                                         <div class="alert alert-danger">{{$errors->first('photo')}}</div>
                                     @endif

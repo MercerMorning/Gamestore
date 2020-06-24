@@ -43,6 +43,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::post('categories/save/{id}', 'AdminController@categorySave')->name('categories.save');
     Route::get('categories/delete/{id}', 'AdminController@categoryDelete')->name('categories.delete');
     Route::post('categories/save/{id}', 'AdminController@categorySave')->name('categories.save');
+
+    Route::get('addresses/change/{id}', 'AdminController@changeAddress')->name('addresses.change');
+
 });
 
 

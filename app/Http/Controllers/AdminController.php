@@ -6,20 +6,22 @@ use App\Categories;
 use App\Goods;
 use App\Http\Requests\CategoriesRequest;
 use App\Http\Requests\GoodsRequest;
+use App\Http\Requests\NotifyaddressRequest;
+use App\Notifyaddress;
 use App\Orders;
 use App\Users;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-
     function index()
     {
+        $addresses = Notifyaddress::all();
         $goods = Goods::all();
         $categories = Categories::all();
         $orders = Orders::all();
         $users = Users::all();
-        return view('admin.page', ['goods' => $goods, 'categories' => $categories, 'users' => $categories, 'orders' => $orders]);
+        return view('admin.page', ['addresses' => $addresses,'goods' => $goods, 'categories' => $categories, 'users' => $categories, 'orders' => $orders]);
     }
 
     function create()
@@ -99,4 +101,27 @@ class AdminController extends Controller
         Categories::destroy($request->id);
         return redirect()->route('goods.admin');
     }
+
+    function changeAddress(NotifyaddressRequest $address)
+    {
+        return redirect()->route('goods');
+    }
+
+    function changeAddressInf(NotifyaddressRequest $request)
+    {
+        var_dump($request);
+        $address = Notifyaddress::query()->find($request->id);
+        $path = base_path('.env');
+        if (file_exists($path)) {
+            file_put_contents($path, str_replace(
+                'MAIL_USERNAME=' . $address->name , 'MAIL_USERNAME='.$request->name, file_get_contents($path)
+            ));
+            file_put_contents($path, str_replace(
+                'MAIL_PASSWORD=' . $address->name , 'MAIL_PASSWORD='.$request->password, file_get_contents($path)
+            ));
+        }
+        $address->name = $request->name;
+        $address->password = $request->password;
+    }
+
 }

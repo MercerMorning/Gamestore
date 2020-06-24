@@ -59,4 +59,27 @@
             </li>
         @endforeach
     </ul>
+
+    <h1>Notification address</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Логин и пароль для уведомлений</div>
+                    <table class="table table-bordered">
+                        @foreach($addresses as $address)
+                            <tr>
+                                <td>{{$address->id}}</td>
+                                <td>{{$address->name}}</td>
+                                <td>{{$address->password}}</td>
+                                <td>
+                                    <a href="{{route('addresses.change', ['id' => $address->id])}}">edit</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Categories;
+use App\Goods;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+//        return view('home');
+        $goods = Goods::all();
+        $categories = Categories::all();
+        return view('welcome', ['goods' => $goods, 'categories' => $categories]);
     }
 }

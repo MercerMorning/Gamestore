@@ -51,7 +51,6 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
@@ -59,7 +58,19 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <div class="form-group{{ $errors->has('admin') ? ' has-error' : '' }}">
+                            <label for="admin" class="col-md-4 control-label">admin</label>
 
+                            <div class="col-md-6">
+                                <input id="admin" type="checkbox" class="form-control" name="admin">
+
+                                @if ($errors->has('admin'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('admin') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
@@ -67,6 +78,7 @@
                                 </button>
                             </div>
                         </div>
+
                     </form>
                 </div>
             </div>

@@ -54,8 +54,9 @@ class AdminController extends Controller
         return redirect()->route('goods.admin');
     }
 
-    function delete(GoodsRequest $request)
+    function delete(Request $request)
     {
         Goods::destroy($request->id);
+        return redirect()->route('goods.admin');
     }
 }

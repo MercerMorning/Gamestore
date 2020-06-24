@@ -26,6 +26,15 @@ Route::get('/goods/order/{id}', 'GoodsController@order')->name('goods.order');
 
 Auth::routes();
 
+Route::group(['prefix' => 'goods', 'middleware' => 'auth'], function() {
+    Route::get('/adminpage', 'AdminController@index');
+    Route::get('create', 'AdminController@create')->name('goods.create');
+    Route::post('add', 'AdminController@add')->name('goods.add');
+    Route::get('edit/{good}', 'AdminController@edit')->name('goods.edit');
+    Route::post('save/{id}', 'AdminController@save')->name('goods.save');
+    Route::get('delete/{id}', 'AdminController@delete')->name('goods.delete');
+});
+
 /*
 Route::group(['prefix' => 'books', 'middleware' => 'auth'], function(){
     Route::get('/', 'BookController@index')->name('books');

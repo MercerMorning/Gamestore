@@ -50,6 +50,7 @@
         </div>
     </div>
 
+    <h1>Orders</h1>
     <ul>
         @foreach($orders as $order)
             <li>

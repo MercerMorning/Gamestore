@@ -13,7 +13,7 @@ class GoodsRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,10 @@ class GoodsRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'price' => 'numeric'
+            'price' => 'numeric',
+            'category' => 'required',
+            'descr' => 'required',
+            'photo' => 'required'
         ];
     }
 }

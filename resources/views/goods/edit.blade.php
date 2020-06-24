@@ -12,7 +12,7 @@
                             <tr>
                                 <td>name</td>
                                 <td>
-                                    <input type="text" name="name" value="{{$good->name}}">
+                                    <input type="text" name="name">
                                     @if ($errors->has('name'))
                                         <div class="alert alert-danger">{{$errors->first('name')}}</div>
                                     @endif
@@ -21,9 +21,36 @@
                             <tr>
                                 <td>price</td>
                                 <td>
-                                    <input type="text" name="price" value="{{$good->price}}">
+                                    <input type="text" name="price">
                                     @if ($errors->has('price'))
                                         <div class="alert alert-danger">{{$errors->first('price')}}</div>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>category</td>
+                                <td>
+                                    <input type="text" name="category">
+                                    @if ($errors->has('category'))
+                                        <div class="alert alert-danger">{{$errors->first('category')}}</div>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>descr</td>
+                                <td>
+                                    <input type="text" name="descr">
+                                    @if ($errors->has('descr'))
+                                        <div class="alert alert-danger">{{$errors->first('descr')}}</div>
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>photo</td>
+                                <td>
+                                    <input type="text" name="photo">
+                                    @if ($errors->has('photo'))
+                                        <div class="alert alert-danger">{{$errors->first('photo')}}</div>
                                     @endif
                                 </td>
                             </tr>

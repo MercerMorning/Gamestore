@@ -27,7 +27,7 @@ Route::get('/goods/order/{id}', 'GoodsController@order')->name('goods.order');
 Auth::routes();
 
 Route::group(['prefix' => 'goods', 'middleware' => 'auth'], function() {
-    Route::get('/adminpage', 'AdminController@index');
+    Route::get('/adminpage', 'AdminController@index')->name('goods.admin');;
     Route::get('create', 'AdminController@create')->name('goods.create');
     Route::post('add', 'AdminController@add')->name('goods.add');
     Route::get('edit/{good}', 'AdminController@edit')->name('goods.edit');
@@ -35,15 +35,15 @@ Route::group(['prefix' => 'goods', 'middleware' => 'auth'], function() {
     Route::get('delete/{id}', 'AdminController@delete')->name('goods.delete');
 });
 
-/*
-Route::group(['prefix' => 'books', 'middleware' => 'auth'], function(){
-    Route::get('/', 'BookController@index')->name('books');
-    Route::get('create', 'BookController@create')->name('books.create');
-    Route::get('edit/{book}', 'BookController@edit')->name('books.edit');
-    Route::post('add', 'BookController@add')->name('books.add');
-    Route::post('save/{id}', 'BookController@save')->name('books.save');
-    Route::get('delete/{id}', 'BookController@delete')->name('books.delete');
-});*/
+
+//Route::group(['prefix' => 'books', 'middleware' => 'auth'], function(){
+//    Route::get('/', 'BookController@index')->name('books');
+//    Route::get('create', 'BookController@create')->name('books.create');
+//    Route::get('edit/{book}', 'BookController@edit')->name('books.edit');
+//    Route::post('add', 'BookController@add')->name('books.add');
+//    Route::post('save/{id}', 'BookController@save')->name('books.save');
+//    Route::get('delete/{id}', 'BookController@delete')->name('books.delete');
+//});
 
 //Auth::routes();
 //Route::get('/home', 'HomeController@index');

@@ -33,8 +33,11 @@ class AdminController extends Controller
         $goods = new Goods();
         $goods->name = $request->name;
         $goods->price = $request->price;
+        $goods->category = $request->category;
+        $goods->descr = $request->descr;
+        $goods->photo = $request->photo;
         $goods->save();
-        return redirect()->route('goods.adminpage');
+        return redirect()->route('goods.admin');
     }
 
 
@@ -44,13 +47,15 @@ class AdminController extends Controller
 
         $goods->name = $request->name;
         $goods->price = $request->price;
+        $goods->category = $request->category;
+        $goods->descr = $request->descr;
+        $goods->photo = $request->photo;
         $goods->save();
-        return redirect()->route('goods.adminpage');
+        return redirect()->route('goods.admin');
     }
 
     function delete(GoodsRequest $request)
     {
         Goods::destroy($request->id);
-
     }
 }

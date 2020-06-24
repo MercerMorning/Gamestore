@@ -73,7 +73,7 @@
                                 <td>{{$address->name}}</td>
                                 <td>{{$address->password}}</td>
                                 <td>
-                                    <a href="{{route('addresses.change', ['id' => $address->id])}}">edit</a>
+                                    <a href="{{route('addresses.change')}}">edit</a>
                                 </td>
                             </tr>
                         @endforeach

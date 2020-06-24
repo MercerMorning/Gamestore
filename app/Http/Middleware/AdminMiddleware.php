@@ -15,7 +15,11 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        //return redirect('http://laravel/goods');
+        if (stripos(strval($request->user()), '"admin":"on"') == false)
+        {
+            return redirect('/goods');
+        }
+
         return $next($request);
     }
 }

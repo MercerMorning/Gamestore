@@ -28,9 +28,9 @@ Route::get('/goods/order/{id}', 'GoodsController@order')->name('goods.order');
 
 Auth::routes();
 
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 //    Route::get('/', 'AdminController@act');
-    Route::get('/', 'AdminController@index')->name('goods.admin');
+    Route::get('page', 'AdminController@index')->name('goods.admin');
     Route::get('create', 'AdminController@create')->name('goods.create');
     Route::post('add', 'AdminController@add')->name('goods.add');
     Route::get('edit/{good}', 'AdminController@edit')->name('goods.edit');
@@ -42,9 +42,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('categories/edit/{category}', 'AdminController@categoryEdit')->name('categories.edit');
     Route::post('categories/save/{id}', 'AdminController@categorySave')->name('categories.save');
     Route::get('categories/delete/{id}', 'AdminController@categoryDelete')->name('categories.delete');
-    Route::post('categories/save/{id}', 'AdminController@categorySave')->name('categories.save');
+    //Route::post('categories/save/{id}', 'AdminController@categorySave')->name('categories.save');
 
-    Route::get('addresses/change/{id}', 'AdminController@changeAddress')->name('addresses.change');
+    Route::get('addresses/change', 'AdminController@changeAddress')->name('addresses.change');
+    Route::post('addresses/save/{id}', 'AdminController@saveAddress')->name('addresses.save');
 
 });
 

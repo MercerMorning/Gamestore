@@ -36,12 +36,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('edit/{good}', 'AdminController@edit')->name('goods.edit');
     Route::post('save/{id}', 'AdminController@save')->name('goods.save');
     Route::get('delete/{id}', 'AdminController@delete')->name('goods.delete');
-//
-//    Route::get('create', 'AdminController@create')->name('.create');
-//    Route::post('add', 'AdminController@add')->name('goods.add');
-//    Route::get('edit/{good}', 'AdminController@edit')->name('goods.edit');
-//    Route::post('save/{id}', 'AdminController@save')->name('goods.save');
-//    Route::get('delete/{id}', 'AdminController@delete')->name('goods.delete');
+
+    Route::post('categories/add', 'AdminController@categoryAdd')->name('categories.add');
+    Route::get('categories/create', 'AdminController@categoryCreate')->name('categories.create');
+    Route::get('categories/edit/{category}', 'AdminController@categoryEdit')->name('categories.edit');
+    Route::post('categories/save/{id}', 'AdminController@categorySave')->name('categories.save');
+    Route::get('categories/delete/{id}', 'AdminController@categoryDelete')->name('categories.delete');
+    Route::post('categories/save/{id}', 'AdminController@categorySave')->name('categories.save');
 });
 
 

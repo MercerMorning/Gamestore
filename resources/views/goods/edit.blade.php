@@ -48,14 +48,14 @@
                             <tr>
                                 <td>photo</td>
                                 <td>
-                                    <input type="text" name="photo">
+                                    <input type="file" name="photo">
                                     @if ($errors->has('photo'))
                                         <div class="alert alert-danger">{{$errors->first('photo')}}</div>
                                     @endif
                                 </td>
                             </tr>
                         </table>
-                        <input type="submit" value="сохранить">
+                        <input type="submit" value="создать">
                     </form>
                 </div>
             </div>

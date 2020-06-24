@@ -25,4 +25,37 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <a href="{{route('categories.create')}}">добавить</a>
+
+                    <div class="panel-heading">Категории</div>
+                    <table class="table table-bordered">
+                        @foreach($categories as $category)
+                            <tr>
+                                <td>{{$category->id}}</td>
+                                <td>{{$category->name}}</td>
+                                <td>{{$category->descr}}</td>
+                                <td>
+                                    <a href="{{route('categories.edit', ['id' => $category->id])}}">edit</a>
+                                    <a href="{{route('categories.delete', ['id' => $category->id])}}">delete</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ul>
+        @foreach($orders as $order)
+            <li>
+                {{ $order->user_email }}
+                {{ $order->good_id }}
+            </li>
+        @endforeach
+    </ul>
 @endsection

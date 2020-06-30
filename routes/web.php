@@ -28,24 +28,25 @@ Route::get('/goods/order/{id}', 'GoodsController@order')->name('goods.order');
 
 Auth::routes();
 
-Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+//Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 //    Route::get('/', 'AdminController@act');
     Route::get('page', 'AdminController@index')->name('goods.admin');
-    Route::get('create', 'AdminController@create')->name('goods.create');
-    Route::post('add', 'AdminController@add')->name('goods.add');
-    Route::get('edit/{good}', 'AdminController@edit')->name('goods.edit');
-    Route::post('save/{id}', 'AdminController@save')->name('goods.save');
-    Route::get('delete/{id}', 'AdminController@delete')->name('goods.delete');
 
-    Route::post('categories/add', 'AdminController@categoryAdd')->name('categories.add');
-    Route::get('categories/create', 'AdminController@categoryCreate')->name('categories.create');
-    Route::get('categories/edit/{category}', 'AdminController@categoryEdit')->name('categories.edit');
-    Route::post('categories/save/{id}', 'AdminController@categorySave')->name('categories.save');
-    Route::get('categories/delete/{id}', 'AdminController@categoryDelete')->name('categories.delete');
-    //Route::post('categories/save/{id}', 'AdminController@categorySave')->name('categories.save');
+    Route::get('create', 'GoodsController@create')->name('goods.create');
+    Route::post('add', 'GoodsController@add')->name('goods.add');
+    Route::get('edit/{good}', 'GoodsController@edit')->name('goods.edit');
+    Route::post('save/{id}', 'GoodsController@save')->name('goods.save');
+    Route::get('delete/{id}', 'GoodsController@delete')->name('goods.delete');
 
-    Route::get('addresses/change', 'AdminController@changeAddress')->name('addresses.change');
-    Route::post('addresses/save/{id}', 'AdminController@saveAddress')->name('addresses.save');
+    Route::post('categories/add', 'CategoriesController@add')->name('categories.add');
+    Route::get('categories/create', 'CategoriesController@create')->name('categories.create');
+    Route::get('categories/edit/{category}', 'CategoriesController@edit')->name('categories.edit');
+    Route::post('categories/save/{id}', 'CategoriesController@save')->name('categories.save');
+    Route::get('categories/delete/{id}', 'CategoriesController@delete')->name('categories.delete');
+
+    Route::get('addresses/change', 'AddressesController@change')->name('addresses.change');
+    Route::post('addresses/save/{id}', 'AddressesController@save')->name('addresses.save');
 
 });
 

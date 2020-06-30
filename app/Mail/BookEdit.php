@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 class BookEdit extends Mailable
 {
-    public $data;
+    private $data;
     
     use Queueable, SerializesModels;
 

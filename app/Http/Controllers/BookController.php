@@ -11,24 +11,24 @@ use Barryvdh\Debugbar\Facade as DebugBar;
 
 class BookController extends Controller
 {
-    function index(Request $request)
+    public function index()
     {
         $books = Book::query()->orderBy('id', 'DESC')->get();
         return view('books.list', ['books' => $books]);
     }
 
-    function create()
+    public function create()
     {
         return view('books.create');
     }
 
-    function edit(Book $book)
+    public function edit(Book $book)
     {
         //\Mail::to(\Auth::user())->send(new BookEdit(['book' => $book]));
         return view('books.edit', ['book' => $book]);
     }
 
-    function add(BookRequest $request)
+    public function add(BookRequest $request)
     {
         $book = new Book();
         $book->name = $request->name;
@@ -38,7 +38,7 @@ class BookController extends Controller
     }
 
 
-    function save(BookRequest $request)
+    public function save(BookRequest $request)
     {
         $book = Book::query()->find($request->id);
 
@@ -48,7 +48,7 @@ class BookController extends Controller
         return redirect()->route('books');
     }
 
-    function delete(BookRequest $request)
+    public function delete(BookRequest $request)
     {
         Book::destroy($request->id);
         return redirect()->route('books');

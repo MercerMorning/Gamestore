@@ -41,14 +41,14 @@ img {
   max-width: 100%;
   height: auto; }
 
-/* main wrapper page*/
+/* gamecave wrapper page*/
 .main-wrapper {
   width: 1200px;
   margin: 0 auto;
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
 
-/* main-header page*/
+/* gamecave-header page*/
 .main-header {
   display: -webkit-box;
   display: -webkit-flex;

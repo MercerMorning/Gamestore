@@ -93,7 +93,7 @@ class GoodsController extends Controller
         $goods->price = $request->price;
         $goods->category = $request->category;
         $goods->descr = $request->descr;
-        $goods->image = $request->image;
+        $goods->photo = $request->photo;
         $goods->save();
         return $this->redirector->route('goods.admin');
     }

@@ -46,10 +46,10 @@ class AddressesController extends Controller
         $path = base_path('.env');
         if (file_exists($path)) {
             file_put_contents($path, str_replace(
-                'MAIL_USERNAME=' . $address->name , 'MAIL_USERNAME=' . $request->name, file_get_contents($path)
+                'MAIL_USERNAME=' . $address->name, 'MAIL_USERNAME=' . $request->name, file_get_contents($path)
             ));
             file_put_contents($path, str_replace(
-                'MAIL_PASSWORD=' . $address->password , 'MAIL_PASSWORD=' . $request->password, file_get_contents($path)
+                'MAIL_PASSWORD=' . $address->password, 'MAIL_PASSWORD=' . $request->password, file_get_contents($path)
             ));
         }
         $address->name = $request->name;

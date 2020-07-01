@@ -6,7 +6,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">Add book</div>
-                    <form action="{{route('goods.save', ['id' => $good->id])}}" method="post">
+                    <form enctype="multipart/form-data" action="{{route('goods.save', ['id' => $good->id])}}" method="post">
                         {{ csrf_field() }}
                         <table class="table table-bordered">
                             <tr>

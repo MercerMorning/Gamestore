@@ -24,19 +24,21 @@ class RegisterController extends Controller
 
     /**
      * Where to redirect users after registration.
-     *
-     * @var string
      */
-    protected $redirectTo = '/home';
+    protected string $redirectTo = '/home';
+    private \Illuminate\Validation\Factory $factory;
+    private \Illuminate\Hashing\BcryptHasher $bcryptHasher;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(\Illuminate\Contracts\Validation\Factory $factory, \Illuminate\Contracts\Hashing\Hasher $bcryptHasher)
     {
         $this->middleware('guest');
+        $this->factory = $factory;
+        $this->bcryptHasher = $bcryptHasher;
     }
 
     /**
@@ -47,7 +49,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        return $this->factory->make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
@@ -65,7 +67,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => $this->bcryptHasher->make($data['password']),
             'admin' => $data['admin'],
         ]);
     }

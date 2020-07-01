@@ -8,9 +8,16 @@ use App\Notifyaddresses;
 
 class AddressesController extends Controller
 {
+    private \Illuminate\Contracts\View\Factory $viewFactory;
+    private \Illuminate\Routing\Redirector $redirector;
+    public function __construct(\Illuminate\Contracts\View\Factory $viewFactory, \Illuminate\Routing\Redirector $redirector)
+    {
+        $this->viewFactory = $viewFactory;
+        $this->redirector = $redirector;
+    }
     public function change()
     {
-        return view('addresses.edit', ['address' => 1]);
+        return $this->viewFactory->make('addresses.edit', ['address' => 1]);
     }
 
     public function save(NotifyaddressRequest $request)
@@ -28,6 +35,6 @@ class AddressesController extends Controller
         $address->name = $request->name;
         $address->password = $request->password;
         $address->save();
-        return redirect()->route('goods.admin');
+        return $this->redirector->route('goods.admin');
     }
 }

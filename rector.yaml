@@ -2,9 +2,31 @@ parameters:
   sets:
     - code-quality
   paths:
-    - 'routes'
-    - 'app'
-    - 'public'
+    - 'routes/web.php'
+    - 'app/Http/Middleware/AdminMiddleware.php'
+    - 'app/Http/Controllers'
+    - 'app/Addresses.php'
+    - 'app/Book.php'
+    - 'app/Categories.php'
+    - 'app/Goods.php'
+    - 'app/Notifyaddress.php'
+    - 'app/Notifyaddresses.php'
+    - 'app/Orders.php'
+    - 'app/User.php'
+    - 'app/Users.php'
 
 services:
   Rector\Laravel\Rector\StaticCall\FacadeStaticCallToConstructorInjectionRector: null
+
+  Rector\Laravel\Rector\FuncCall\HelperFunctionToConstructorInjectionRector: null
+
+  Rector\Laravel\Rector\Class_\InlineValidationRulesToArrayDefinitionRector: null
+
+  Rector\Laravel\Rector\StaticCall\MinutesToSecondsInCacheRector: null
+
+  Rector\Laravel\Rector\StaticCall\Redirect301ToPermanentRedirectRector: null
+
+  Rector\Laravel\Rector\StaticCall\RequestStaticValidateToInjectRector: null
+
+  Rector\Renaming\Rector\Function_\RenameFunctionRector: null
+

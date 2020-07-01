@@ -8,14 +8,16 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    private \Illuminate\Contracts\View\Factory $viewFactory;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(\Illuminate\Contracts\View\Factory $viewFactory)
     {
         $this->middleware('auth');
+        $this->viewFactory = $viewFactory;
     }
 
     /**
@@ -28,6 +30,6 @@ class HomeController extends Controller
 //        return view('home');
         $goods = Goods::all();
         $categories = Categories::all();
-        return view('welcome', ['goods' => $goods, 'categories' => $categories]);
+        return $this->viewFactory->make('welcome', ['goods' => $goods, 'categories' => $categories]);
     }
 }

@@ -11,21 +11,28 @@ use Barryvdh\Debugbar\Facade as DebugBar;
 
 class BookController extends Controller
 {
+    private \Illuminate\Contracts\View\Factory $viewFactory;
+    private \Illuminate\Routing\Redirector $redirector;
+    public function __construct(\Illuminate\Contracts\View\Factory $viewFactory, \Illuminate\Routing\Redirector $redirector)
+    {
+        $this->viewFactory = $viewFactory;
+        $this->redirector = $redirector;
+    }
     public function index()
     {
         $books = Book::query()->orderBy('id', 'DESC')->get();
-        return view('books.list', ['books' => $books]);
+        return $this->viewFactory->make('books.list', ['books' => $books]);
     }
 
     public function create()
     {
-        return view('books.create');
+        return $this->viewFactory->make('books.create');
     }
 
     public function edit(Book $book)
     {
         //\Mail::to(\Auth::user())->send(new BookEdit(['book' => $book]));
-        return view('books.edit', ['book' => $book]);
+        return $this->viewFactory->make('books.edit', ['book' => $book]);
     }
 
     public function add(BookRequest $request)
@@ -34,7 +41,7 @@ class BookController extends Controller
         $book->name = $request->name;
         $book->price = $request->price;
         $book->save();
-        return redirect()->route('books');
+        return $this->redirector->route('books');
     }
 
 
@@ -45,12 +52,12 @@ class BookController extends Controller
         $book->name = $request->name;
         $book->price = $request->price;
         $book->save();
-        return redirect()->route('books');
+        return $this->redirector->route('books');
     }
 
     public function delete(BookRequest $request)
     {
         Book::destroy($request->id);
-        return redirect()->route('books');
+        return $this->redirector->route('books');
     }
 }

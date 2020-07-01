@@ -11,21 +11,28 @@ use Illuminate\Http\Request;
 
 class GoodsController extends Controller
 {
+    private \Illuminate\Contracts\View\Factory $viewFactory;
+    private \Illuminate\Routing\Redirector $redirector;
+    public function __construct(\Illuminate\Contracts\View\Factory $viewFactory, \Illuminate\Routing\Redirector $redirector)
+    {
+        $this->viewFactory = $viewFactory;
+        $this->redirector = $redirector;
+    }
     public function index()
     {
         $goods = Goods::all();
         $categories = Categories::all();
-        return view('welcome', ['goods' => $goods, 'categories' => $categories]);
+        return $this->viewFactory->make('welcome', ['goods' => $goods, 'categories' => $categories]);
     }
 
     public function create()
     {
-        return view('goods.create');
+        return $this->viewFactory->make('goods.create');
     }
 
     public function edit(Goods $good)
     {
-        return view('goods.edit', ['good' => $good]);
+        return $this->viewFactory->make('goods.edit', ['good' => $good]);
     }
 
     public function add(GoodsRequest $request)
@@ -37,7 +44,7 @@ class GoodsController extends Controller
         $goods->descr = $request->descr;
         $goods->image = $request->file('photo')->store('uploads', 'public');
         $goods->save();
-        return redirect()->route('goods.admin');
+        return $this->redirector->route('goods.admin');
     }
 
 
@@ -52,7 +59,7 @@ class GoodsController extends Controller
         $goods->descr = $request->descr;
         $goods->image = $request->image;
         $goods->save();
-        return redirect()->route('goods.admin');
+        return $this->redirector->route('goods.admin');
     }
 
 
@@ -60,7 +67,7 @@ class GoodsController extends Controller
     public function delete(Request $request)
     {
         Goods::destroy($request->id);
-        return redirect()->route('goods.admin');
+        return $this->redirector->route('goods.admin');
     }
 
     public function goodpage($id)
@@ -68,7 +75,7 @@ class GoodsController extends Controller
         $categories = Categories::all();
         $good = Goods::query()->find($id);
         //\Mail::to(\Auth::user())->send(new BookEdit(['book'=>$good]));
-        return view('goods.page', ['attributes' => $good, 'categories' => $categories]);
+        return $this->viewFactory->make('goods.page', ['attributes' => $good, 'categories' => $categories]);
     }
 
     public function categories($id)
@@ -76,7 +83,7 @@ class GoodsController extends Controller
         $categories = Categories::all();
         $categoryName = Categories::query()->select('name')->where('id', '=', $id)->get();
         $goodList = Goods::query()->select()->where('category', '=', $categoryName[0]['name'])->get();
-        return view('goods.list', ['goods' => $goodList, 'categories' => $categories, 'categoryName' => $categoryName[0]['name']]);
+        return $this->viewFactory->make('goods.list', ['goods' => $goodList, 'categories' => $categories, 'categoryName' => $categoryName[0]['name']]);
     }
 
     public function order($id)

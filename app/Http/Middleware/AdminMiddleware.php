@@ -7,6 +7,15 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminMiddleware
 {
+    private \Illuminate\Auth\AuthManager $authManager;
+    private \Illuminate\Routing\Redirector $redirector;
+    private \Illuminate\Routing\UrlGenerator $urlGenerator;
+    public function __construct(\Illuminate\Contracts\Auth\Factory $authManager, \Illuminate\Routing\Redirector $redirector, \Illuminate\Contracts\Routing\UrlGenerator $urlGenerator)
+    {
+        $this->authManager = $authManager;
+        $this->redirector = $redirector;
+        $this->urlGenerator = $urlGenerator;
+    }
     /**
      * Handle an incoming request.
      *
@@ -16,11 +25,11 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::guest() && Auth::user()->hasAdmin())
+        if (!$this->authManager->guest() && $this->authManager->user()->hasAdmin())
         {
             return $next($request);
         }
 
-        return redirect(route('goods'));
+        return $this->redirector->back($this->urlGenerator->route('goods'));
     }
 }

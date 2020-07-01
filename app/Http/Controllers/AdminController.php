@@ -16,12 +16,17 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    private \Illuminate\Contracts\View\Factory $viewFactory;
+    public function __construct(\Illuminate\Contracts\View\Factory $viewFactory)
+    {
+        $this->viewFactory = $viewFactory;
+    }
     public function index()
     {
         $addresses = Notifyaddress::all();
         $goods = Goods::all();
         $categories = Categories::all();
         $orders = Orders::all();
-        return view('admin.page', ['addresses' => $addresses,'goods' => $goods, 'categories' => $categories, 'users' => $categories, 'orders' => $orders]);
+        return $this->viewFactory->make('admin.page', ['addresses' => $addresses,'goods' => $goods, 'categories' => $categories, 'users' => $categories, 'orders' => $orders]);
     }
 }

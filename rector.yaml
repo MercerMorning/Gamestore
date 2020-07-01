@@ -1,0 +1,10 @@
+parameters:
+  sets:
+    - code-quality
+  paths:
+    - 'routes'
+    - 'app'
+    - 'public'
+
+services:
+  Rector\Laravel\Rector\StaticCall\FacadeStaticCallToConstructorInjectionRector: null

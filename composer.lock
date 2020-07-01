@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "802e2a48b7ea31df3ab7b980f91e4bc8",
+    "content-hash": "88324336f0be41ffda4da25a0ad8349f",
     "packages": [
         {
             "name": "ckeditor/ckeditor",
@@ -6358,6 +6358,45 @@
                 "xunit"
             ],
             "time": "2020-01-08T08:45:45+00:00"
+        },
+        {
+            "name": "rector/rector-prefixed",
+            "version": "v0.7.41",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rectorphp/rector-prefixed.git",
+                "reference": "76a193c754f130913d38f30b39ab82d528a72067"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rectorphp/rector-prefixed/zipball/76a193c754f130913d38f30b39ab82d528a72067",
+                "reference": "76a193c754f130913d38f30b39ab82d528a72067",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2"
+            },
+            "conflict": {
+                "nikic/php-parser": "<4.3",
+                "phpstan/phpstan": "<0.12"
+            },
+            "replace": {
+                "rector/rector": "self.version"
+            },
+            "require-dev": {
+                "doctrine/orm": "^2.7"
+            },
+            "bin": [
+                "rector",
+                "rector.phar"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Prefixed version of Rector compiled in PHAR",
+            "time": "2020-06-25T23:57:46+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

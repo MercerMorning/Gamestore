@@ -13,24 +13,15 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::post('/image/upload', 'ImageController@upload')->name('image.upload');
-
 Route::get('/', 'GoodsController@index')->name('home');
-
-//Route::get('/home', function () {
-//    return view('welcome');
-//});
-
 Route::get('/goods', 'GoodsController@index')->name('goods');
-Route::get('/goods/goodpage/{id}', 'GoodsController@goodpage')->name('goods.goodpage');
+Route::get('/goods/goodpage/{id}', 'GoodsController@single')->name('goods.goodpage');
 Route::get('/goods/categories/{id}', 'GoodsController@categories')->name('goods.categories');
 Route::get('/goods/order/{id}', 'GoodsController@order')->name('goods.order');
 
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-//Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
-//    Route::get('/', 'AdminController@act');
     Route::get('page', 'AdminController@index')->name('goods.admin');
 
     Route::get('create', 'GoodsController@create')->name('goods.create');
@@ -49,26 +40,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::post('addresses/save/{id}', 'AddressesController@save')->name('addresses.save');
 
 });
-
-
-//Route::group(['prefix' => 'books', 'middleware' => 'auth'], function(){
-//    Route::get('/', 'BookController@index')->name('books');
-//    Route::get('create', 'BookController@create')->name('books.create');
-//    Route::get('edit/{book}', 'BookController@edit')->name('books.edit');
-//    Route::post('add', 'BookController@add')->name('books.add');
-//    Route::post('save/{id}', 'BookController@save')->name('books.save');
-//    Route::get('delete/{id}', 'BookController@delete')->name('books.delete');
-//});
-
-//Auth::routes();
-//Route::get('/home', 'HomeController@index');
-//
-//Route::group(['prefix' => 'books', 'middleware' => 'auth'], function () {
-//    Route::get('/', 'BookController@index');
-//    Route::get('create', 'BookController@create')->name('books.create');
-//    Route::get('edit/{book}', 'BookController@edit')->name('books.edit');
-//    Route::post('add', 'BookController@add')->name('books.add');
-//    Route::post('save/{id}', 'BookController@save')->name('books.save');
-//    Route::get('delete/{id}', 'BookController@delete')->name('books.delete');
-//});
 

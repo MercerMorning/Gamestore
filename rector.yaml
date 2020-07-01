@@ -16,17 +16,20 @@ parameters:
     - 'app/Users.php'
 
 services:
-  Rector\Laravel\Rector\StaticCall\FacadeStaticCallToConstructorInjectionRector: null
+      Rector\CodingStyle\Rector\Throw_\AnnotateThrowablesRector: null
 
-  Rector\Laravel\Rector\FuncCall\HelperFunctionToConstructorInjectionRector: null
+      Rector\CodingStyle\Rector\ClassConst\VarConstantCommentRector: null
 
-  Rector\Laravel\Rector\Class_\InlineValidationRulesToArrayDefinitionRector: null
+      Rector\Laravel\Rector\StaticCall\FacadeStaticCallToConstructorInjectionRector: null
 
-  Rector\Laravel\Rector\StaticCall\MinutesToSecondsInCacheRector: null
+      Rector\Laravel\Rector\FuncCall\HelperFunctionToConstructorInjectionRector: null
 
-  Rector\Laravel\Rector\StaticCall\Redirect301ToPermanentRedirectRector: null
+      Rector\Laravel\Rector\Class_\InlineValidationRulesToArrayDefinitionRector: null
 
-  Rector\Laravel\Rector\StaticCall\RequestStaticValidateToInjectRector: null
+      Rector\Laravel\Rector\StaticCall\MinutesToSecondsInCacheRector: null
 
-  Rector\Renaming\Rector\Function_\RenameFunctionRector: null
+      Rector\Laravel\Rector\StaticCall\Redirect301ToPermanentRedirectRector: null
 
+      Rector\Laravel\Rector\StaticCall\RequestStaticValidateToInjectRector: null
+
+      Rector\Renaming\Rector\Function_\RenameFunctionRector: null

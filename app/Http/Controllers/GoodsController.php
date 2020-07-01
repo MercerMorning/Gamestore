@@ -13,11 +13,24 @@ class GoodsController extends Controller
 {
     private \Illuminate\Contracts\View\Factory $viewFactory;
     private \Illuminate\Routing\Redirector $redirector;
+
+    /**
+     * GoodsController constructor.
+     * @param \Illuminate\Contracts\View\Factory $viewFactory
+     *
+     * @param \Illuminate\Routing\Redirector $redirector
+     */
     public function __construct(\Illuminate\Contracts\View\Factory $viewFactory, \Illuminate\Routing\Redirector $redirector)
     {
         $this->viewFactory = $viewFactory;
         $this->redirector = $redirector;
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\View
+     *
+     * Вывод всех товаров и категорий на странице
+     */
     public function index()
     {
         $goods = Goods::all();
@@ -25,16 +38,35 @@ class GoodsController extends Controller
         return $this->viewFactory->make('welcome', ['goods' => $goods, 'categories' => $categories]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\View
+     *
+     * Создание товара
+     */
     public function create()
     {
         return $this->viewFactory->make('goods.create');
     }
 
+    /**
+     * @param Goods $good
+     *
+     * @return \Illuminate\Contracts\View\View
+     *
+     * Изменение товара
+     */
     public function edit(Goods $good)
     {
         return $this->viewFactory->make('goods.edit', ['good' => $good]);
     }
 
+    /**
+     * @param GoodsRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * Добавление товара
+     */
     public function add(GoodsRequest $request)
     {
         $goods = new Goods();
@@ -47,9 +79,13 @@ class GoodsController extends Controller
         return $this->redirector->route('goods.admin');
     }
 
-
-
-
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * Сохранение товара
+     */
     public function save(Request $request)
     {
         $goods = Goods::query()->find($request->id);
@@ -62,15 +98,27 @@ class GoodsController extends Controller
         return $this->redirector->route('goods.admin');
     }
 
-
-
+    /**
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * Удаление товара
+     */
     public function delete(Request $request)
     {
         Goods::destroy($request->id);
         return $this->redirector->route('goods.admin');
     }
 
-    public function goodpage($id)
+    /**
+     * @param $id
+     *
+     * @return \Illuminate\Contracts\View\View
+     *
+     * Вывод информации о товаре на индивидуальную страницу
+     */
+    public function single($id)
     {
         $categories = Categories::all();
         $good = Goods::query()->find($id);
@@ -78,6 +126,13 @@ class GoodsController extends Controller
         return $this->viewFactory->make('goods.page', ['attributes' => $good, 'categories' => $categories]);
     }
 
+    /**
+     * @param $id
+     *
+     * @return \Illuminate\Contracts\View\View
+     *
+     * Вывод категорий на страницу
+     */
     public function categories($id)
     {
         $categories = Categories::all();
@@ -86,11 +141,18 @@ class GoodsController extends Controller
         return $this->viewFactory->make('goods.list', ['goods' => $goodList, 'categories' => $categories, 'categoryName' => $categoryName[0]['name']]);
     }
 
+    /**
+     * @param $id
+     *
+     * @return string
+     *
+     * Осуществление заказа
+     */
     public function order($id)
     {
         $orders = new Orders();
-        $orders->user_email = \Auth::user()->email;
-        $orders->good_id = $id;
+        $orders->userEmail = \Auth::user()->email;
+        $orders->goodId = $id;
         $orders->save();
         \Mail::to(\Auth::user())->send(new BookEdit(['goodId'=>$id, 'email' => \Auth::user()->email]));
         $admins = [];

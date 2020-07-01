@@ -27,6 +27,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * @return bool
+     *
+     * Проверка является ли пользватель администратором
+     */
     public function hasAdmin()
     {
         return true;

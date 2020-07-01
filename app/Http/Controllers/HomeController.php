@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Categories;
 use App\Goods;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -27,7 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-//        return view('home');
         $goods = Goods::all();
         $categories = Categories::all();
         return $this->viewFactory->make('welcome', ['goods' => $goods, 'categories' => $categories]);

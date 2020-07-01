@@ -18,7 +18,7 @@ class Test extends Mailable
      */
     public function __construct()
     {
-        //
+
     }
 
     /**
